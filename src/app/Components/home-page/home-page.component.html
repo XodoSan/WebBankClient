@@ -1,0 +1,8 @@
+<div *ngFor="let bankAccount of bankAccounts">
+    <!-- <input MatInput type="checkbox" [(ngModel)]="checkboxFile.isChecked">
+    <span [class.active]="checkboxFile.isChecked"></span> -->
+    <p>{{bankAccount.contributor.fio}}</p>
+    <p>{{bankAccount.bank.name}}</p>
+    <p>{{bankAccount.rate.name}}</p>
+</div>
+<button mat-button (click)="openBankAccountDialog()" mat-dialog-close>Action with bank account</button>

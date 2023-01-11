@@ -1,0 +1,51 @@
+<div>
+    <mat-dialog-content>
+        <h2>Bank account</h2>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <form
+            [formGroup]="addBankAccountDialogForm"
+            (ngSubmit)="onSubmit()"
+        >
+            <label>Bank:</label>
+            <div *ngFor="let bank of banks">
+                <label>
+                    <input formControlName="bankId" 
+                    [value]='bank.id' 
+                    type="radio"                 
+                    placeholder="Choose your bank">
+                    {{bank.name}}
+                </label>
+            </div>
+            
+            <label>Contributor:</label>
+            <div *ngFor="let contributor of contributors">
+                <label>
+                    <input formControlName="contributorId" 
+                    [value]='contributor.id' 
+                    type="radio"                 
+                    placeholder="Choose your contributor">
+                    {{contributor.fio}}
+                </label>
+            </div>
+
+            <label>Rate:</label>
+            <div *ngFor="let rate of rates">
+                <label>
+                    <input formControlName="rateId" 
+                    [value]='rate.id' 
+                    type="radio"                 
+                    placeholder="Choose your contributor">
+                    {{rate.name}}
+                </label>
+            </div>
+
+            <button 
+            type="submit"
+            mat-button
+            [disabled]="addBankAccountDialogForm.invalid || addBankAccountDialogForm.disabled">Add
+            </button>
+            <button mat-button mat-dialog-close>Cancel</button>
+        </form>
+    </mat-dialog-actions>
+</div>
