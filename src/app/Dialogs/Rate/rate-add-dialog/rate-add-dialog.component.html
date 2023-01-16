@@ -1,0 +1,32 @@
+<div>
+    <mat-dialog-content>
+        <h2>Rate</h2>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <form
+            [formGroup]="addRateDialogForm"
+            (ngSubmit)="onSubmit()"
+        >
+            <label>Name:</label>
+            <label>
+                <input formControlName="name" 
+                type="text"                 
+                placeholder="enter rate name">
+            </label>
+            
+            <label>Information of rate:</label>
+            <label>
+                <input formControlName="information" 
+                type="text"                 
+                placeholder="enter information of rate">
+            </label>
+
+            <button 
+            type="submit"
+            mat-button
+            [disabled]="addRateDialogForm.invalid || addRateDialogForm.disabled">Add
+            </button>
+            <button mat-button mat-dialog-close>Cancel</button>
+        </form>
+    </mat-dialog-actions>
+</div>

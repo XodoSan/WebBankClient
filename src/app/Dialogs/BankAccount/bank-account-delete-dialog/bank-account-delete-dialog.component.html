@@ -1,0 +1,13 @@
+<p>Choose account to delete</p>
+<div *ngFor="let account of bankAccounts">
+    <label>
+        <input [(ngModel)]="ownerId"
+        [value]='account.id'
+        type="radio">
+        {{account.contributor.fio}}
+        {{account.bank.name}}
+        {{account.rate.name}}
+    </label>
+</div>
+<button mat-button (click)="deleteBankAccount()" mat-dialog-close>Delete</button>
+<button mat-button mat-dialog-close>Cancel</button>

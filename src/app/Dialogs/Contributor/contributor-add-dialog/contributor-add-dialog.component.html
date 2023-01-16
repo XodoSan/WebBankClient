@@ -1,0 +1,38 @@
+<div>
+    <mat-dialog-content>
+        <h2>Contributor</h2>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <form
+            [formGroup]="addContributorDialogForm"
+            (ngSubmit)="onSubmit()"
+        >
+            <label>Fio:</label>
+            <label>
+                <input formControlName="fio" 
+                type="text"                 
+                placeholder="enter contributor fio">
+            </label>
+            
+            <label>Post name:</label>
+            <label>
+                <input formControlName="postName" 
+                type="text"                 
+                placeholder="enter post name of contributor">
+            </label>
+
+            <label>Birthday:</label>
+            <label>
+                <input formControlName="birthday" 
+                type="date">
+            </label>
+
+            <button 
+            type="submit"
+            mat-button
+            [disabled]="addContributorDialogForm.invalid || addContributorDialogForm.disabled">Add
+            </button>
+            <button mat-button mat-dialog-close>Cancel</button>
+        </form>
+    </mat-dialog-actions>
+</div>

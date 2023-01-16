@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { BankAddDialogComponent } from '../bank-add-dialog/bank-add-dialog.component';
+import { BankDeleteDialogComponent } from '../bank-delete-dialog/bank-delete-dialog.component';
 
 @Component({
   selector: 'app-bank-dialog',
@@ -16,14 +18,10 @@ export class BankDialogComponent implements OnInit {
   }
 
   public async openAddBankDialog() {
-    // this.dialog.open(BankAccountDialogComponent);
-  }
-
-  public async openUpdateBankDialog() {
-    // this.dialog.open(BankAccountDialogComponent);
+    this.dialog.open(BankAddDialogComponent);
   }
 
   public async openDeleteBankDialog() {
-    // this.dialog.open(BankAccountDialogComponent);
+    this.dialog.open(BankDeleteDialogComponent);
   }
 }

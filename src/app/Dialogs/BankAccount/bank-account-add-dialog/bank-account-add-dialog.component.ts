@@ -6,6 +6,9 @@ import { Bank } from 'src/app/Entities/Bank';
 import { Contributor } from 'src/app/Entities/Contributor';
 import { Rate } from 'src/app/Entities/Rate';
 import { BankService } from 'src/app/Services/BankService';
+import { BankAddDialogComponent } from '../../Bank/bank-add-dialog/bank-add-dialog.component';
+import { ContributorAddDialogComponent } from '../../Contributor/contributor-add-dialog/contributor-add-dialog.component';
+import { RateAddDialogComponent } from '../../Rate/rate-add-dialog/rate-add-dialog.component';
 
 @Component({
   selector: 'app-bank-account-add-dialog',
@@ -40,21 +43,30 @@ export class BankAccountAddDialogComponent implements OnInit {
   }
 
   public async onSubmit() {
-    await this.bankService.AddBankAccount(this.addBankAccountDialogForm!.value);
+    if (this.addBankAccountDialogForm!.value.bankId.value != Guid.createEmpty() &&
+    this.addBankAccountDialogForm!.value.contributorId.value != Guid.createEmpty() &&
+    this.addBankAccountDialogForm!.value.rateId.value != Guid.createEmpty()) {
+      await this.bankService.AddBankAccount(this.addBankAccountDialogForm!.value);
 
+      this.bankService.GetBankAccounts();
+    }
+    else {
+      alert("Some field is empty!")
+    }    
+    
     this.addBankAccountDialogForm!.disable();
     this.dialog.closeAll();
   }
 
-  public async openBankDialog() {
-    // this.dialog.open(BankAccountDialogComponent);
+  public async openAddBankDialog() {
+    this.dialog.open(BankAddDialogComponent);
   }
 
-  public async openRateDialog() {
-    // this.dialog.open(BankAccountDialogComponent);
+  public async openAddRateDialog() {
+    this.dialog.open(RateAddDialogComponent);
   }
 
-  public async openContributorDialog() {
-    // this.dialog.open(BankAccountDialogComponent);
+  public async openAddContributorDialog() {
+    this.dialog.open(ContributorAddDialogComponent);
   }
 }

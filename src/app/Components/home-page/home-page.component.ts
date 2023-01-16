@@ -5,6 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { BankAccountDialogComponent } from 'src/app/Dialogs/BankAccount/bank-account-dialog/bank-account-dialog.component';
 import { Contributor } from 'src/app/Entities/Contributor';
 import { Guid } from 'guid-typescript';
+import { BankDialogComponent } from 'src/app/Dialogs/Bank/bank-dialog/bank-dialog.component';
+import { ContributorDialogComponent } from 'src/app/Dialogs/Contributor/contributor-dialog/contributor-dialog.component';
+import { RateDialogComponent } from 'src/app/Dialogs/Rate/rate-dialog/rate-dialog.component';
+import { BankAccountUpdateDialogComponent } from 'src/app/Dialogs/BankAccount/bank-account-update-dialog/bank-account-update-dialog.component';
 
 @Component({
   selector: 'app-home-page',
@@ -23,15 +27,26 @@ export class HomePageComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.bankAccounts = await this._bankService.GetBankAccounts();
     this.contributors = await this._bankService.GetAllContributors();
-    console.log(this.bankAccounts)
   }
 
   public async openBankAccountDialog() {
     this.dialog.open(BankAccountDialogComponent);
   }
 
-  public findContributorByAccount(id: Guid) {
-    console.log(id);
-    return this.contributors.find((x: Contributor) => x.id == id)!;
+  public async openBankDialog() {
+    this.dialog.open(BankDialogComponent);
+  }
+
+  public async openContributorDialog() {
+    this.dialog.open(ContributorDialogComponent);
+  }
+
+  public async openRateDialog() {
+    this.dialog.open(RateDialogComponent);
+  }
+
+  public async openUpdateBankAccountDialog(id: Guid) {
+    BankAccountUpdateDialogComponent.currentBankAccountId = id;
+    this.dialog.open(BankAccountUpdateDialogComponent)
   }
 }

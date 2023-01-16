@@ -1,0 +1,32 @@
+<div>
+    <mat-dialog-content>
+        <h2>Bank</h2>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <form
+            [formGroup]="addBankDialogForm"
+            (ngSubmit)="onSubmit()"
+        >
+            <label>Name:</label>
+            <label>
+                <input formControlName="name" 
+                type="text"                 
+                placeholder="enter bank name">
+            </label>
+            
+            <label>Location:</label>
+            <label>
+                <input formControlName="location" 
+                type="text"                 
+                placeholder="enter country of bank">
+            </label>
+
+            <button 
+            type="submit"
+            mat-button
+            [disabled]="addBankDialogForm.invalid || addBankDialogForm.disabled">Add
+            </button>
+            <button mat-button mat-dialog-close>Cancel</button>
+        </form>
+    </mat-dialog-actions>
+</div>

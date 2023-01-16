@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BankService } from 'src/app/Services/BankService';
 import { BankAccountAddDialogComponent } from '../bank-account-add-dialog/bank-account-add-dialog.component';
+import { BankAccountDeleteDialogComponent } from '../bank-account-delete-dialog/bank-account-delete-dialog.component';
 
 @Component({
   selector: 'app-bank-account-dialog',
@@ -20,7 +21,10 @@ export class BankAccountDialogComponent {
   }
 
   public async openUpdateDialog() {
-    // this.dialog.open(LoginDialogComponent);
+    alert("To update parameters of your account, click on it on the main page")
   }
 
+  public async openDeleteDialog() {
+    this.dialog.open(BankAccountDeleteDialogComponent);
+  }  
 }

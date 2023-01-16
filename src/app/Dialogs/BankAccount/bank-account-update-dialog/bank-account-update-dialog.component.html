@@ -1,10 +1,10 @@
 <div>
     <mat-dialog-content>
-        <h2>Bank account</h2>
+        <h2>Update Bank account</h2>
     </mat-dialog-content>
     <mat-dialog-actions>
         <form
-            [formGroup]="addBankAccountDialogForm"
+            [formGroup]="updateBankAccountDialogForm"
             (ngSubmit)="onSubmit()"
         >
             <label>Bank:</label>
@@ -43,12 +43,9 @@
             <button 
             type="submit"
             mat-button
-            [disabled]="addBankAccountDialogForm.invalid || addBankAccountDialogForm.disabled">Add
+            [disabled]="updateBankAccountDialogForm.invalid || updateBankAccountDialogForm.disabled">Add
             </button>
             <button mat-button mat-dialog-close>Cancel</button>
         </form>
     </mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)="openAddBankDialog()">Add Bank</button>
-    <button mat-button mat-dialog-close (click)="openAddContributorDialog()">Add Contributor</button>
-    <button mat-button mat-dialog-close (click)="openAddRateDialog()">Add Rate</button>
 </div>
