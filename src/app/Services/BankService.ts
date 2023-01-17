@@ -20,6 +20,10 @@ export class BankService {
     return firstValueFrom(await this.http.get<BankAccount[]>(this.constPath + 'BankAccount'));
   }
 
+  public async GetFilteredBankAccounts(): Promise<BankAccount[]> {
+    return firstValueFrom(await this.http.get<BankAccount[]>(this.constPath + 'BankAccount/Filter'));
+  }
+
   public async GetAllBanks(): Promise<Bank[]> {
     return firstValueFrom(await this.http.get<Bank[]>(this.constPath + 'Bank'));
   }

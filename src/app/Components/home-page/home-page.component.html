@@ -1,3 +1,12 @@
+<h2>Accounts</h2>
+
+<p>Search account by some field</p>
+<input MatInput type="text" [(ngModel)]="searchParam">
+<button mat-button (click)="search()">Search</button>
+
+<p>Filter by opening date</p>
+<button mat-button (click)="filterByOpeningDate()">Filter</button>
+
 <div *ngFor="let bankAccount of bankAccounts" (click)="openUpdateBankAccountDialog(bankAccount.id)">
     <p>------------------------------------------------------------------------------</p>
     <p>{{bankAccount.contributor.fio}}</p>
@@ -5,6 +14,7 @@
     <p>{{bankAccount.rate.name}}</p>
     <p>------------------------------------------------------------------------------</p>
 </div>
+
 <button mat-button (click)="openBankAccountDialog()" mat-dialog-close>Action with bank account</button>
 <button mat-button (click)="openBankDialog()" mat-dialog-close>Action with bank</button>
 <button mat-button (click)="openContributorDialog()" mat-dialog-close>Action with contributor</button>

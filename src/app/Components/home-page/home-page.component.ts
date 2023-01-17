@@ -19,6 +19,7 @@ export class HomePageComponent implements OnInit {
   public bankAccounts: BankAccount[] = [];
   public contributors: Contributor[] = [];
   public bankService!: BankService;
+  public searchParam: any;
 
   constructor(private _bankService: BankService, private dialog: MatDialog) { 
     this.bankService = _bankService;
@@ -48,5 +49,52 @@ export class HomePageComponent implements OnInit {
   public async openUpdateBankAccountDialog(id: Guid) {
     BankAccountUpdateDialogComponent.currentBankAccountId = id;
     this.dialog.open(BankAccountUpdateDialogComponent)
+  }
+
+  public async search() {
+    this.bankAccounts = await this.bankService.GetBankAccounts();
+    let accountById = this.bankAccounts.find((x) => x.id === this.searchParam);
+    if (accountById != null) {
+      this.bankAccounts = [];
+      this.bankAccounts.push(accountById);
+      return 1;
+    }
+    
+    let accountByOpeningDate = this.bankAccounts.find((x) => x.accountOpeningDate === this.searchParam);
+    if (accountByOpeningDate != null) {
+      this.bankAccounts = [];
+      this.bankAccounts.push(accountByOpeningDate);
+      return 1;
+    }
+
+    let resultByFios: BankAccount[] = [];
+    if (this.bankAccounts.find((x) => x.contributor.fio === this.searchParam) != null) {
+      while(this.bankAccounts.find((x) => x.contributor.fio === this.searchParam) != null) {
+        let thisAccount = this.bankAccounts.find((x) => x.contributor.fio === this.searchParam);
+        let index = this.bankAccounts.indexOf(thisAccount!);
+        resultByFios.push(thisAccount!);
+        this.bankAccounts.splice(index, 1);
+      } 
+      this.bankAccounts = resultByFios;
+      return 1;
+    }
+
+    let resultByBanks: BankAccount[] = [];
+    if (this.bankAccounts.find((x) => x.bank.name === this.searchParam) != null) {
+      while(this.bankAccounts.find((x) => x.bank.name === this.searchParam) != null) {
+        let thisAccount = this.bankAccounts.find((x) => x.bank.name === this.searchParam);
+        let index = this.bankAccounts.indexOf(thisAccount!);
+        resultByBanks.push(thisAccount!);
+        this.bankAccounts.splice(index, 1);
+      } 
+      this.bankAccounts = resultByBanks;
+    }
+
+    return 1;
+  }
+
+  public async filterByOpeningDate() {
+    this.bankAccounts = [];
+    this.bankAccounts = await this._bankService.GetFilteredBankAccounts();
   }
 }
